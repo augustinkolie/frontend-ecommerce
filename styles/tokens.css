@@ -1,0 +1,201 @@
+/*
+ * SEULE source des couleurs, polices, rayons, ombres et durées.
+ * Les valeurs par défaut de Tailwind sont effacées (initial) : les palettes
+ * de couleurs et les grands rayons par défaut n'existent tout simplement pas.
+ */
+
+@theme {
+  /* ---------- Couleurs (boutique) ---------- */
+  --color-*: initial;
+  --color-bg: #f7f4ef;
+  --color-surface: #ffffff;
+  --color-surface-alt: #efeae2;
+  --color-ink: #1c1a17;
+  --color-ink-hover: #000000;
+  --color-on-ink: #ffffff;
+  --color-ink-muted: #6b645b;
+  --color-line: #e2dcd2;
+  --color-accent: #b4532a;
+  --color-success: #2f6b4f;
+  --color-warning: #9a6200;
+  --color-danger: #b3261e;
+  --color-focus: #2b4c7e;
+  /* Couleurs fixes, identiques en clair et en sombre : voile des modales, éléments posés sur les photos. */
+  --color-scrim: #1c1a17;
+  --color-photo-ink: #1c1a17;
+  --color-photo-light: #ffffff;
+
+  /* ---------- Polices (chargées par next/font dans app/layout.tsx) ---------- */
+  --font-*: initial;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-instrument-sans), system-ui, sans-serif;
+
+  /* ---------- Échelle typographique : 12 · 14 · 16 · 18 · 22 · 28 · 36 · 48 · 64 ---------- */
+  --text-*: initial;
+  --text-xs: 12px;
+  --text-xs--line-height: 1.5;
+  --text-sm: 14px;
+  --text-sm--line-height: 1.5;
+  --text-base: 16px;
+  --text-base--line-height: 1.5;
+  --text-lg: 18px;
+  --text-lg--line-height: 1.5;
+  --text-xl: 22px;
+  --text-xl--line-height: 1.3;
+  --text-2xl: 28px;
+  --text-2xl--line-height: 1.1;
+  --text-3xl: 36px;
+  --text-3xl--line-height: 1.1;
+  --text-4xl: 48px;
+  --text-4xl--line-height: 1.1;
+  --text-5xl: 64px;
+  --text-5xl--line-height: 1.1;
+  /* Titre de la une : 52 px à 375 px de large, 112 px à partir de 1440 px. */
+  --text-hero: clamp(52px, 30.9px + 5.63vw, 112px);
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.02em;
+
+  --tracking-*: initial;
+  --tracking-title: -0.01em;
+  --tracking-caps: 0.04em;
+
+  /* ---------- Grille de 4 px (p-1 = 4 px, p-2 = 8 px, p-6 = 24 px...) ---------- */
+  --spacing: 4px;
+
+  /* ---------- Rayons : 2 px (boutons, champs), 4 px (cartes, modales), pastilles ---------- */
+  --radius-*: initial;
+  --radius-sm: 2px;
+  --radius: 4px;
+  --radius-full: 999px;
+
+  /* ---------- Ombres : aucune dans la boutique, une seule pour l'admin ---------- */
+  --shadow-*: initial;
+  --shadow-overlay: 0 4px 16px rgb(28 26 23 / 0.08);
+
+  /* ---------- Ratios d'images produit ---------- */
+  --aspect-product: 4 / 5;
+  --aspect-linen: 1 / 1;
+  --aspect-hero: 16 / 7;
+  --aspect-feature: 3 / 2;
+
+  /* ---------- Une de l'accueil ---------- */
+  --container-hero-copy: 600px; /* bloc de texte posé sur la photo */
+  --container-hero-sub: 38ch; /* longueur de ligne du sous-titre */
+
+  /* ---------- Mouvement : 150–200 ms, ease-out ---------- */
+  --ease-*: initial;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --default-transition-duration: 150ms;
+  --default-transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+
+  --animate-*: initial;
+  --animate-fade-in: fade-in 150ms cubic-bezier(0.2, 0, 0, 1);
+  --animate-drawer-in: drawer-in 200ms cubic-bezier(0.2, 0, 0, 1);
+  --animate-drawer-in-left: drawer-in-left 200ms cubic-bezier(0.2, 0, 0, 1);
+  --animate-modal-in: modal-in 200ms cubic-bezier(0.2, 0, 0, 1);
+  --animate-pulse: pulse 1.6s ease-in-out infinite;
+  --animate-hotspot-in-right: hotspot-in-right 150ms cubic-bezier(0.2, 0, 0, 1);
+  --animate-hotspot-in-left: hotspot-in-left 150ms cubic-bezier(0.2, 0, 0, 1);
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes drawer-in {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes drawer-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes modal-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    50% { opacity: 0.5; }
+  }
+  /* Mini-fiche d'un point produit : fondu + glissement de 4 px depuis le point. */
+  @keyframes hotspot-in-right {
+    from { opacity: 0; transform: translateX(-4px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes hotspot-in-left {
+    from { opacity: 0; transform: translateX(4px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ---------- Points de rupture (mobile d'abord, 375 px) ---------- */
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* ---------- Mode sombre de la boutique : neutres chauds, mêmes rôles que la palette claire ---------- */
+.dark {
+  --color-bg: #141210;
+  --color-surface: #1c1a17;
+  --color-surface-alt: #26231f;
+  --color-ink: #f1ece4;
+  --color-ink-hover: #ffffff;
+  --color-on-ink: #141210;
+  --color-ink-muted: #a39b90;
+  --color-line: #36322d;
+  --color-accent: #d97a4f;
+  --color-success: #6fb592;
+  --color-warning: #d9a441;
+  --color-danger: #ef8a82;
+  --color-focus: #8fa9d6;
+  color-scheme: dark;
+}
+
+/* ---------- Palette admin : neutres plus froids, accent indigo #2B4C7E ---------- */
+.admin {
+  --color-bg: #f4f4f2;
+  --color-surface: #ffffff;
+  --color-surface-alt: #ebebe8;
+  --color-line: #e0dfdb;
+  --color-accent: #2b4c7e;
+  /* Pas de serif dans l'admin */
+  --font-serif: var(--font-instrument-sans), system-ui, sans-serif;
+}
+
+/* Admin : une seule ombre légère, pour menus et modales */
+.admin [role="dialog"],
+.admin [role="menu"],
+.admin [role="listbox"] {
+  box-shadow: var(--shadow-overlay);
+}
+
+/* ---------- Mode sombre admin ---------- */
+.admin.dark {
+  --color-bg: #141412;
+  --color-surface: #1e1d1b;
+  --color-surface-alt: #282724;
+  --color-ink: #ece9e4;
+  --color-ink-hover: #ffffff;
+  --color-on-ink: #141412;
+  --color-ink-muted: #a8a197;
+  --color-line: #34322e;
+  --color-accent: #8fa9d6;
+  --color-focus: #8fa9d6;
+  --color-success: #6fb592;
+  --color-warning: #d9a441;
+  --color-danger: #ef8a82;
+  color-scheme: dark;
+}
+
+/* ---------- Une de l'accueil : hauteur = écran moins le header (bandeau 34 px + barre 64 px + bordure 1 px) ---------- */
+:root {
+  --header-height: 99px;
+}
+
+@utility h-hero {
+  height: clamp(560px, calc(100svh - var(--header-height)), 880px);
+}
+
+/* Variante dark: de Tailwind pilotée par la classe .dark sur <html> (choix mémorisé), et non par le seul réglage système. */
+@custom-variant dark (&:where(.dark, .dark *));
